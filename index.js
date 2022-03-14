@@ -139,7 +139,7 @@ const fixedAccount = mongoose.model("fixedAccount", fixedAccountSchemas);
 app.get("/masterAccounts", async (res, req) => {
     try {
         const users = await masterAccount.find().lean().exec();
-        return res.statu(201).send(users)
+        return res.statusCode(201).send(users)
     }
     catch(e) {
         return res.statusCode(500).send(e.message)
@@ -149,7 +149,7 @@ app.get("/masterAccounts", async (res, req) => {
 app.post("/savingsAccounts", async (res, req) => {
     try {
         const details = await savingsAccount.create(req.body);
-        return res.statu(201).send(details)
+        return res.statusCode(201).send(details)
     }
     catch(e) {
         return res.statusCode(500).send(e.message)
@@ -159,7 +159,17 @@ app.post("/savingsAccounts", async (res, req) => {
 app.post("/fixedAccounts", async (res, req) => {
     try {
         const details = await fixedAccount.create(req.body);
-        return res.statu(201).send(details)
+        return res.statusCode(201).send(details)
+    }
+    catch(e) {
+        return res.statusCode(500).send(e.message)
+    }
+})
+
+app.get("/masterAccounts/id", async (res, req) => {
+    try {
+        const account = await masterAccount.find().lean().exec();
+        return res.statusCode(201).send(users)
     }
     catch(e) {
         return res.statusCode(500).send(e.message)
