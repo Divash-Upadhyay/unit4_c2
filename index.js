@@ -132,9 +132,41 @@ const fixedAccountSchemas = new mongoose.Schema(
         timestamps: true,
     }
 )
-
-
 const fixedAccount = mongoose.model("fixedAccount", fixedAccountSchemas);
+
+
+// API's
+app.get("/masterAccounts", async (res, req) => {
+    try {
+        const users = await masterAccount.find().lean().exec();
+        return res.statu(201).send(users)
+    }
+    catch(e) {
+        return res.statusCode(500).send(e.message)
+    }
+})
+
+app.post("/savingsAccounts", async (res, req) => {
+    try {
+        const details = await savingsAccount.create(req.body);
+        return res.statu(201).send(details)
+    }
+    catch(e) {
+        return res.statusCode(500).send(e.message)
+    }
+})
+
+app.post("/fixedAccounts", async (res, req) => {
+    try {
+        const details = await fixedAccount.create(req.body);
+        return res.statu(201).send(details)
+    }
+    catch(e) {
+        return res.statusCode(500).send(e.message)
+    }
+})
+
+
 
 
 app.listen(2347, async function () {
