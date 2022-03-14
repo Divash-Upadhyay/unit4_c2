@@ -9,7 +9,7 @@ app.use(express.json());
 
 const connect = () => {
     return mongoose.connect(
-        ("mongodb+srv://Divash:qwerty67890@cluster0.6lshx.mongodb.net/webb14?retryWrites=true&w=majority")
+        ("mongodb+srv://dishu:qwerty123456@evaluation.ubmpk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     );
 };
 
